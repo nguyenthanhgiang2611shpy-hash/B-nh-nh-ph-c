@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bánh Nhà Phúc</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bánh Nhà Phúc – tiệm bánh kem gia đình tại Suối Bạc 3, xã Sơn Hòa, Đắk Lắk. Bánh kem tươi làm mỗi ngày, giao tận nhà miễn phí trong khu vực.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap">
+<style>
+/* Bố cục: một trang dọc cho điện thoại; phần đầu chia 2 cột trên máy tính, phiếu đặt bánh là điểm nhấn chính */
+:root {
+  --bg: #fffaf7;
+  --surface: #ffffff;
+  --band: #fdeef1;
+  --ink: #3a2420;
+  --muted: #7a625c;
+  --line: #f0dcd8;
+  --accent: #c2335b;
+  --accent-ink: #ffffff;
+  --accent-soft: #f9d9e2;
+  --leaf: #5f8f4e;
+  --plate: #ecdcd6;
+  --font-display: "Baloo 2", "Be Vietnam Pro", system-ui, sans-serif;
+  --font-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radius: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1514; --surface: #2a1f1d; --band: #33201f; --ink: #f6e9e5; --muted: #c4aaa3;
+    --line: #48332f; --accent: #f06d92; --accent-ink: #2a0d16; --accent-soft: #4a2430;
+    --leaf: #8cc17a; --plate: #4a3833; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1d1514; --surface: #2a1f1d; --band: #33201f; --ink: #f6e9e5; --muted: #c4aaa3;
+  --line: #48332f; --accent: #f06d92; --accent-ink: #2a0d16; --accent-soft: #4a2430;
+  --leaf: #8cc17a; --plate: #4a3833; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+img, svg { max-width: 100%; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+h3 { font-size: 1.3rem; }
+p { margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+.draft { background: var(--ink); color: var(--bg); font-size: 0.85rem; text-align: center; }
+.draft .wrap { padding-block: 8px; }
+
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+.logo { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.logo svg { width: 34px; height: 34px; }
+nav { display: flex; gap: 4px; flex-wrap: wrap; }
+nav a { color: var(--ink); text-decoration: none; padding: 6px 12px; border-radius: 999px; font-weight: 500; font-size: 0.95rem; }
+nav a:hover { background: var(--accent-soft); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: 600 1rem var(--font-body); padding: 12px 22px; border-radius: 999px;
+  border: 2px solid var(--accent); text-decoration: none; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink); transition: transform .15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn.ghost { background: transparent; color: var(--accent); }
+
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; padding-block: 28px 48px; }
+.hero > .wrap > div { min-width: 0; }
+.eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--leaf); }
+.hero h1 { font-size: clamp(2.3rem, 6vw, 3.6rem); margin-top: 8px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lead { margin-top: 16px; font-size: 1.1rem; color: var(--muted); max-width: 34em; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 28px; padding: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.1; }
+.facts span { font-size: 0.85rem; color: var(--muted); }
+.hero-art { background: var(--band); border-radius: 50% 50% 24px 24px / 40% 40% 24px 24px; padding: 24px 16px 8px; }
+.hero-art svg { display: block; width: 100%; height: auto; max-width: 420px; margin: 0 auto; }
+
+section { padding-block: 56px; }
+.band { background: var(--band); }
+.sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; max-width: 40em; }
+.sec-head p { color: var(--muted); }
+
+.cats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.chip { font: 500 0.92rem var(--font-body); padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.card .pic { background: var(--band); padding: 18px 18px 4px; }
+.card .pic svg { width: 100%; height: auto; display: block; }
+.card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card .tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--leaf); }
+.card p { color: var(--muted); font-size: 0.95rem; }
+.prices { list-style: none; padding: 0; margin: 4px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; font-variant-numeric: tabular-nums; }
+.prices li { background: var(--bg); border-radius: 10px; padding: 6px 4px; text-align: center; font-size: 0.85rem; line-height: 1.3; }
+.prices small { display: block; color: var(--muted); font-size: 0.75rem; }
+.prices b { font-weight: 600; }
+.card .btn { margin-top: auto; padding: 10px 16px; font-size: 0.95rem; }
+.card .spacer { flex: 1; }
+.note { font-size: 0.85rem; color: var(--muted); margin-top: 16px; }
+
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; counter-reset: s; }
+.steps li { counter-increment: s; display: flex; gap: 14px; align-items: flex-start; }
+.steps li::before { content: counter(s); flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 1.2rem/40px var(--font-display); text-align: center; }
+.steps b { display: block; font-size: 1.05rem; }
+.steps span { color: var(--muted); font-size: 0.95rem; }
+
+.order { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; align-items: start; }
+.order > * { min-width: 0; }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+label, .legend { font-weight: 600; font-size: 0.92rem; }
+input, select, textarea {
+  font: 400 1rem var(--font-body); color: var(--ink); background: var(--surface);
+  border: 1.5px solid var(--line); border-radius: 12px; padding: 11px 12px; width: 100%; min-width: 0;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+.seg { display: flex; gap: 8px; flex-wrap: wrap; }
+.seg label { font-weight: 500; display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--line); background: var(--surface); padding: 9px 14px; border-radius: 12px; cursor: pointer; }
+.seg input { width: auto; accent-color: var(--accent); }
+
+.slip {
+  background: var(--surface); border-radius: var(--radius); padding: 22px 20px;
+  border: 2px dashed var(--accent); position: sticky; top: calc(16px + env(safe-area-inset-top, 0px));
+}
+.slip h3 { color: var(--accent); }
+.slip .sub { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+.slip dl { margin: 16px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 0.95rem; }
+.slip dt { color: var(--muted); }
+.slip dd { margin: 0; font-weight: 500; overflow-wrap: anywhere; }
+.slip .total { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-variant-numeric: tabular-nums; }
+.slip .total b { font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); }
+.slip .ship { color: var(--leaf); font-weight: 600; font-size: 0.9rem; }
+.slip .btns { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.slip textarea { margin-top: 12px; font-size: 0.85rem; height: 120px; resize: vertical; }
+.status { font-size: 0.85rem; color: var(--leaf); min-height: 1.4em; margin-top: 6px; }
+
+.ship-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+.ship-item { background: var(--surface); border-radius: var(--radius); padding: 20px; border: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; }
+.ship-item .big { font-family: var(--font-display); font-size: 1.8rem; color: var(--accent); line-height: 1.1; }
+.ship-item p { color: var(--muted); font-size: 0.95rem; }
+
+.contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.contact > div { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.contact .label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.contact .val { font-size: 1.15rem; font-weight: 600; user-select: all; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.small-btn { font: 600 0.85rem var(--font-body); padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; text-decoration: none; }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+footer .wrap { padding-block: 24px 96px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+.fab {
+  position: fixed; z-index: 20;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 6px 20px rgba(150, 30, 70, 0.3);
+}
+
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-block: 12px 40px; }
+  .hero-art { order: -1; max-width: 360px; margin: 0 auto; width: 100%; }
+  .order { grid-template-columns: 1fr; }
+  .slip { position: static; }
+  form { grid-template-columns: 1fr; }
+  section { padding-block: 44px; }
+}
+</style>
+</head>
+<body>
+<div class="draft"><div class="wrap">Bản nháp: giá bánh, số điện thoại và hình minh họa đang để tạm, sẽ thay bằng thông tin thật của tiệm.</div></div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" id="top">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="18" width="28" height="16" rx="4" fill="var(--accent)"/><rect x="6" y="16" width="28" height="6" rx="3" fill="var(--accent-soft)"/><rect x="18.5" y="6" width="3" height="10" rx="1.5" fill="var(--leaf)"/><ellipse cx="20" cy="5" rx="2.2" ry="3" fill="#f5b83d"/></svg>
+      Bánh Nhà Phúc
+    </a>
+    <nav aria-label="Mục lục">
+      <a href="#banh">Các loại bánh</a>
+      <a href="#dat-banh">Đặt bánh</a>
+      <a href="#giao-hang">Giao hàng</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Tiệm bánh gia đình · Suối Bạc 3, Sơn Hòa</div>
+        <h1>Bánh kem tươi, <em>làm mới mỗi ngày</em> cho những ngày vui của bạn</h1>
+        <p class="lead">Hơn 5 năm làm bánh sinh nhật, bánh tiệc cho bà con Sơn Hòa. Đặt bánh qua Zalo hoặc điện thoại, tiệm giao tận nhà miễn phí trong khu vực.</p>
+        <div class="actions">
+          <a class="btn" href="#dat-banh">Đặt bánh ngay</a>
+          <a class="btn ghost" href="#banh">Xem các loại bánh</a>
+        </div>
+        <ul class="facts">
+          <li><b>5+ năm</b><span>làm bánh từ 2021</span></li>
+          <li><b>0đ</b><span>phí giao trong khu vực</span></li>
+          <li><b>Theo mẫu</b><span>vẽ hình, ghi chữ theo ý</span></li>
+        </ul>
+      </div>
+      <div class="hero-art" aria-hidden="true" id="hero-art"></div>
+    </div>
+  </div>
+
+  <section class="band" id="banh">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Các loại bánh</h2>
+        <p>Mỗi bánh có 3 cỡ. Cỡ 16cm đủ cho 4–6 người, 20cm cho 8–10 người, 24cm cho 12–15 người.</p>
+      </div>
+      <div class="cats" role="group" aria-label="Lọc theo loại" id="cats"></div>
+      <div class="grid" id="grid"></div>
+      <p class="note">Giá trên là giá tham khảo của bản nháp. Bánh vẽ hình hoặc nhiều tầng tiệm sẽ báo giá riêng.</p>
+    </div>
+  </section>
+
+  <section id="theo-mau">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Làm bánh theo mẫu riêng</h2>
+        <p>Có ảnh bánh bạn thích? Gửi cho tiệm, tiệm làm theo đúng ý bạn.</p>
+      </div>
+      <ol class="steps">
+        <li><div><b>Gửi ảnh mẫu qua Zalo</b><span>Kèm cỡ bánh, vị kem và chữ muốn ghi trên bánh.</span></div></li>
+        <li><div><b>Tiệm báo giá và thời gian</b><span>Tiệm trả lời giá và giờ có thể giao bánh.</span></div></li>
+        <li><div><b>Chốt đơn, hẹn giờ giao</b><span>Bánh được làm trong ngày và giao đúng giờ hẹn.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="dat-banh">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Đặt bánh</h2>
+        <p>Điền phiếu bên dưới, bấm <b>Chép nội dung</b> rồi dán vào Zalo gửi cho tiệm. Tiệm sẽ gọi lại xác nhận đơn.</p>
+      </div>
+      <div class="order">
+        <form id="form" novalidate>
+          <div class="field full">
+            <label for="f-cake">Loại bánh</label>
+            <select id="f-cake"></select>
+          </div>
+          <div class="field">
+            <label for="f-size">Cỡ bánh</label>
+            <select id="f-size">
+              <option value="16">16cm (4–6 người)</option>
+              <option value="20" selected>20cm (8–10 người)</option>
+              <option value="24">24cm (12–15 người)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-qty">Số lượng</label>
+            <input id="f-qty" type="number" min="1" max="20" value="1" inputmode="numeric">
+          </div>
+          <div class="field full">
+            <label for="f-text">Chữ trên bánh</label>
+            <input id="f-text" type="text" maxlength="60" placeholder="Ví dụ: Chúc mừng sinh nhật Bé Na 5 tuổi">
+          </div>
+          <div class="field">
+            <label for="f-date">Ngày nhận</label>
+            <input id="f-date" type="date">
+          </div>
+          <div class="field">
+            <label for="f-time">Giờ nhận</label>
+            <input id="f-time" type="time" value="17:00">
+          </div>
+          <div class="field full">
+            <span class="legend" id="lg-recv">Cách nhận bánh</span>
+            <div class="seg" role="radiogroup" aria-labelledby="lg-recv">
+              <label><input type="radio" name="recv" id="f-recv-ship" value="ship" checked> Giao tận nhà (miễn phí)</label>
+              <label><input type="radio" name="recv" id="f-recv-shop" value="shop"> Lấy tại tiệm</label>
+            </div>
+          </div>
+          <div class="field full" id="addr-field">
+            <label for="f-addr">Địa chỉ giao</label>
+            <input id="f-addr" type="text" placeholder="Thôn, xã, số nhà hoặc điểm dễ nhận biết">
+          </div>
+          <div class="field">
+            <label for="f-name">Tên người đặt</label>
+            <input id="f-name" type="text" autocomplete="name" placeholder="Ví dụ: Chị Lan">
+          </div>
+          <div class="field">
+            <label for="f-phone">Số điện thoại</label>
+            <input id="f-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Để tiệm gọi xác nhận">
+          </div>
+          <div class="field full">
+            <label for="f-note">Ghi chú thêm</label>
+            <textarea id="f-note" rows="2" placeholder="Ví dụ: ít ngọt, thêm nến số 5, lấy thêm dao cắt"></textarea>
+          </div>
+        </form>
+
+        <aside class="slip" aria-live="polite">
+          <h3>Phiếu đặt bánh</h3>
+          <div class="sub">Bánh Nhà Phúc · Suối Bạc 3, Sơn Hòa</div>
+          <dl id="slip-dl"></dl>
+          <div class="total">
+            <span>Tạm tính</span>
+            <b id="slip-total">0đ</b>
+          </div>
+          <div class="ship" id="slip-ship">Phí giao hàng: miễn phí</div>
+          <div class="btns">
+            <button class="btn" type="button" id="copy-btn">Chép nội dung</button>
+            <a class="btn ghost" id="zalo-btn" href="https://zalo.me/" target="_blank" rel="noopener">Mở Zalo của tiệm</a>
+          </div>
+          <div class="status" id="status" role="status"></div>
+          <label for="msg" class="sr" style="position:absolute;left:-9999px">Nội dung tin nhắn</label>
+          <textarea id="msg" readonly></textarea>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="giao-hang">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Giao hàng</h2>
+        <p>Tiệm tự giao bánh để bánh tới tay bạn còn nguyên vẹn.</p>
+      </div>
+      <div class="ship-grid">
+        <div class="ship-item"><div class="big">Miễn phí</div><b>Giao trong khu vực xã Sơn Hòa</b><p>Ở xa hơn, bạn nhắn tiệm để hỏi trước.</p></div>
+        <div class="ship-item"><div class="big">Đặt trước</div><b>Nên đặt trước 1 ngày</b><p>Bánh có sẵn mẫu có thể đặt trong ngày, tùy lúc tiệm còn bánh.</p></div>
+        <div class="ship-item"><div class="big">Giữ lạnh</div><b>Hộp cứng, giữ mát khi giao</b><p>Bánh được đặt chắc trong hộp, không bị móp kem khi đi đường.</p></div>
+        <div class="ship-item"><div class="big">Kiểm tra</div><b>Xem bánh khi nhận</b><p>Nếu bánh có vấn đề, bạn chụp ảnh và báo ngay cho tiệm để được xử lý.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="lien-he">
+    <div class="wrap">
+      <div class="sec-head"><h2>Liên hệ</h2></div>
+      <div class="contact">
+        <div>
+          <span class="label">Điện thoại và Zalo</span>
+          <span class="val" id="phone-text">09xx xxx xxx</span>
+          <div class="row"><button class="small-btn" type="button" id="copy-phone">Chép số</button><a class="small-btn" id="call-link" href="tel:">Gọi</a></div>
+        </div>
+        <div>
+          <span class="label">Địa chỉ</span>
+          <span class="val">Suối Bạc 3, xã Sơn Hòa, tỉnh Đắk Lắk</span>
+          <div class="row"><a class="small-btn" href="https://www.google.com/maps/search/?api=1&query=Su%E1%BB%91i+B%E1%BA%A1c+3%2C+S%C6%A1n+H%C3%B2a%2C+%C4%90%E1%BA%AFk+L%E1%BA%AFk" target="_blank" rel="noopener">Xem bản đồ</a></div>
+        </div>
+        <div>
+          <span class="label">Giờ mở cửa</span>
+          <span class="val">6:30 – 21:00 hằng ngày</span>
+          <span style="color:var(--muted);font-size:.9rem">Nhận đặt bánh qua Zalo cả ngày.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Bánh Nhà Phúc · Tiệm bánh gia đình tại Sơn Hòa</span>
+    <span>Làm bánh từ 2021</span>
+  </div>
+</footer>
+
+<a class="btn fab" href="#dat-banh">Đặt bánh</a>
+
+<script>
+// ===== THÔNG TIN TIỆM: sửa ở đây =====
+var SHOP = {
+  phone: "",            // ví dụ "0912345678" – để trống thì hiện 09xx xxx xxx
+  zalo: ""              // số Zalo, thường trùng số điện thoại
+};
+
+// ===== DANH SÁCH BÁNH (giá tạm) =====
+var CAKES = [
+  { id: "dau", name: "Bánh kem dâu tây", cat: "Sinh nhật", desc: "Cốt bông lan mềm, kem tươi, phủ dâu tây tươi.", body: "#f7e3c4", frost: "#ffffff", top: "strawberry", prices: [180000, 250000, 340000] },
+  { id: "socola", name: "Bánh kem socola", cat: "Sinh nhật", desc: "Cốt socola, kem socola chảy, rắc socola vụn.", body: "#7b4a32", frost: "#5a3222", top: "choco", prices: [190000, 260000, 350000] },
+  { id: "bap", name: "Bánh kem bắp", cat: "Sinh nhật", desc: "Kem bắp thơm béo, vị quen thuộc, ít ngọt.", body: "#f6e2a6", frost: "#fff4cc", top: "corn", prices: [160000, 220000, 300000] },
+  { id: "traicay", name: "Bánh kem trái cây", cat: "Sinh nhật", desc: "Kem tươi với trái cây theo mùa: dâu, kiwi, nho.", body: "#f7e3c4", frost: "#fff8f0", top: "fruit", prices: [190000, 260000, 350000] },
+  { id: "be", name: "Bánh vẽ hình cho bé", cat: "Cho bé", desc: "Vẽ nhân vật, con giáp hoặc tên bé theo yêu cầu.", body: "#ffd6e2", frost: "#bfe3f5", top: "kid", prices: [220000, 300000, 400000] },
+  { id: "mini", name: "Bánh mini trong hộp", cat: "Bánh nhỏ", desc: "Bánh nhỏ xinh trong hộp, hợp tặng bạn, tặng thầy cô.", body: "#f7e3c4", frost: "#f9d9e2", top: "mini", prices: [60000, 90000, 120000], sizes: ["1 hộp", "2 hộp", "3 hộp"] },
+  { id: "tang", name: "Bánh 2 tầng", cat: "Tiệc", desc: "Cho đám cưới, đầy tháng, tân gia. Báo giá theo mẫu.", body: "#fff8f0", frost: "#ffffff", top: "tier", prices: [450000, 600000, 800000] },
+];
+
+function fmt(n) { return n.toLocaleString("vi-VN") + "đ"; }
+
+function cakeSVG(c, big) {
+  var s = '<svg viewBox="0 0 220 170" role="img" aria-label="' + c.name + '">';
+  s += '<ellipse cx="110" cy="154" rx="92" ry="11" fill="var(--plate)"/>';
+  if (c.top === "tier") {
+    s += '<rect x="30" y="98" width="160" height="56" rx="10" fill="' + c.body + '" stroke="var(--line)"/>';
+    s += '<rect x="30" y="96" width="160" height="12" rx="6" fill="' + c.frost + '" stroke="var(--line)"/>';
+    s += '<rect x="58" y="52" width="104" height="48" rx="10" fill="' + c.body + '" stroke="var(--line)"/>';
+    s += '<rect x="58" y="50" width="104" height="11" rx="5.5" fill="' + c.frost + '" stroke="var(--line)"/>';
+    for (var i = 0; i < 9; i++) s += '<circle cx="' + (42 + i * 17) + '" cy="126" r="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1"/>';
+    s += '<circle cx="96" cy="44" r="8" fill="#f6a5b8"/><circle cx="110" cy="40" r="9" fill="var(--accent)"/><circle cx="124" cy="44" r="8" fill="#f6a5b8"/>';
+    s += '<path d="M100 47 q-10 -2 -14 6 M120 47 q10 -2 14 6" stroke="var(--leaf)" stroke-width="3" fill="none" stroke-linecap="round"/>';
+    return s + '</svg>';
+  }
+  if (c.top === "mini") {
+    s += '<rect x="44" y="62" width="132" height="92" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>';
+    s += '<rect x="60" y="92" width="100" height="56" rx="8" fill="' + c.body + '"/>';
+    s += '<rect x="60" y="88" width="100" height="14" rx="7" fill="' + c.frost + '"/>';
+    s += '<circle cx="110" cy="82" r="9" fill="var(--accent)"/><path d="M110 74 q4 -6 9 -5" stroke="var(--leaf)" stroke-width="3" fill="none" stroke-linecap="round"/>';
+    s += '<path d="M40 62 L110 40 L180 62" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/>';
+    s += '<path d="M110 40 q-14 -14 -22 -4 q8 8 22 4 q14 -14 22 -4 q-8 8 -22 4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>';
+    return s + '</svg>';
+  }
+  // bánh 1 tầng
+  s += '<rect x="28" y="74" width="164" height="80" rx="12" fill="' + c.body + '" stroke="var(--line)"/>';
+  s += '<rect x="28" y="70" width="164" height="18" rx="9" fill="' + c.frost + '"/>';
+  for (var j = 0; j < 8; j++) {
+    var h = (j % 2 ? 14 : 22);
+    s += '<rect x="' + (32 + j * 20) + '" y="76" width="16" height="' + h + '" rx="8" fill="' + c.frost + '"/>';
+  }
+  s += '<ellipse cx="110" cy="72" rx="82" ry="12" fill="' + c.frost + '" stroke="var(--line)"/>';
+  if (c.top === "strawberry") {
+    [52, 81, 110, 139, 168].forEach(function (x, k) {
+      var y = 60 + (k % 2) * 4;
+      s += '<path d="M' + (x - 10) + ' ' + y + ' q10 26 20 0 q-10 -8 -20 0z" fill="#d9304f"/>';
+      s += '<path d="M' + (x - 6) + ' ' + (y - 1) + ' l6 -7 l6 7" fill="none" stroke="var(--leaf)" stroke-width="3" stroke-linecap="round"/>';
+    });
+  } else if (c.top === "choco") {
+    for (var m = 0; m < 6; m++) s += '<circle cx="' + (55 + m * 22) + '" cy="' + (64 + (m % 2) * 5) + '" r="6.5" fill="#3d1f14"/>';
+    s += '<rect x="100" y="38" width="20" height="26" rx="4" fill="#3d1f14" transform="rotate(12 110 51)"/>';
+  } else if (c.top === "corn") {
+    for (var n = 0; n < 14; n++) s += '<circle cx="' + (48 + (n % 7) * 21) + '" cy="' + (64 + Math.floor(n / 7) * 9) + '" r="4.5" fill="#f2b632"/>';
+  } else if (c.top === "fruit") {
+    s += '<circle cx="62" cy="64" r="11" fill="#7fb24a"/><circle cx="62" cy="64" r="6" fill="#c9e38f"/>';
+    s += '<path d="M85 60 q10 22 20 0 q-10 -7 -20 0z" fill="#d9304f"/>';
+    s += '<circle cx="128" cy="62" r="7" fill="#6a3d8f"/><circle cx="138" cy="68" r="7" fill="#7b4aa2"/><circle cx="122" cy="70" r="7" fill="#6a3d8f"/>';
+    s += '<circle cx="164" cy="64" r="11" fill="#f39a2b"/><circle cx="164" cy="64" r="6" fill="#ffd08a"/>';
+  } else if (c.top === "kid") {
+    s += '<circle cx="110" cy="112" r="24" fill="#fff" stroke="var(--line)"/>';
+    s += '<circle cx="101" cy="108" r="3" fill="var(--ink)"/><circle cx="119" cy="108" r="3" fill="var(--ink)"/>';
+    s += '<path d="M101 120 q9 8 18 0" stroke="var(--ink)" stroke-width="2.5" fill="none" stroke-linecap="round"/>';
+    s += '<circle cx="92" cy="90" r="9" fill="#fff" stroke="var(--line)"/><circle cx="128" cy="90" r="9" fill="#fff" stroke="var(--line)"/>';
+    for (var q = 0; q < 6; q++) s += '<circle cx="' + (50 + q * 24) + '" cy="66" r="4" fill="' + ["#f2b632", "#d9304f", "#5fa3d9", "#7fb24a", "#f39a2b", "#c2335b"][q] + '"/>';
+  }
+  if (big) {
+    [78, 110, 142].forEach(function (x) {
+      s += '<rect x="' + (x - 4) + '" y="26" width="8" height="38" rx="3" fill="' + (x === 110 ? "var(--accent)" : "#f6a5b8") + '"/>';
+      s += '<path d="M' + x + ' 6 q8 10 0 18 q-8 -8 0 -18z" fill="#f5b83d"/>';
+    });
+  }
+  return s + '</svg>';
+}
+
+var $ = function (id) { return document.getElementById(id); };
+
+// Phần đầu
+$("hero-art").innerHTML = cakeSVG(CAKES[0], true);
+
+// Lọc loại bánh và danh sách
+var cats = ["Tất cả"].concat(CAKES.map(function (c) { return c.cat; }).filter(function (v, i, a) { return a.indexOf(v) === i; }));
+var current = "Tất cả";
+function renderCats() {
+  $("cats").innerHTML = cats.map(function (c) {
+    return '<button type="button" class="chip" aria-pressed="' + (c === current) + '" data-cat="' + c + '">' + c + '</button>';
+  }).join("");
+}
+function renderGrid() {
+  $("grid").innerHTML = CAKES.filter(function (c) { return current === "Tất cả" || c.cat === current; }).map(function (c) {
+    var labels = c.sizes || ["16cm", "20cm", "24cm"];
+    return '<article class="card"><div class="pic">' + cakeSVG(c) + '</div><div class="body">' +
+      '<span class="tag">' + c.cat + '</span><h3>' + c.name + '</h3><p>' + c.desc + '</p>' +
+      '<ul class="prices">' + c.prices.map(function (p, i) { return '<li><small>' + labels[i] + '</small><b>' + fmt(p) + '</b></li>'; }).join("") + '</ul>' +
+      '<div class="spacer"></div><button type="button" class="btn ghost" data-pick="' + c.id + '">Chọn bánh này</button></div></article>';
+  }).join("");
+}
+$("cats").addEventListener("click", function (e) {
+  var b = e.target.closest("[data-cat]"); if (!b) return;
+  current = b.getAttribute("data-cat"); renderCats(); renderGrid();
+});
+$("grid").addEventListener("click", function (e) {
+  var b = e.target.closest("[data-pick]"); if (!b) return;
+  $("f-cake").value = b.getAttribute("data-pick"); update();
+  $("dat-banh").scrollIntoView({ behavior: "smooth" });
+});
+renderCats(); renderGrid();
+
+// Phiếu đặt bánh
+$("f-cake").innerHTML = CAKES.map(function (c) { return '<option value="' + c.id + '">' + c.name + '</option>'; }).join("");
+var tmr = new Date(); tmr.setDate(tmr.getDate() + 1);
+$("f-date").value = tmr.getFullYear() + "-" + String(tmr.getMonth() + 1).padStart(2, "0") + "-" + String(tmr.getDate()).padStart(2, "0");
+
+function sizeLabel(c, v) {
+  var idx = { "16": 0, "20": 1, "24": 2 }[v];
+  return { idx: idx, text: c.sizes ? c.sizes[idx] : v + "cm" };
+}
+function esc(t) { return String(t).replace(/[&<>"]/g, function (ch) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]; }); }
+
+function update() {
+  var c = CAKES.filter(function (x) { return x.id === $("f-cake").value; })[0] || CAKES[0];
+  var sz = sizeLabel(c, $("f-size").value);
+  var qty = Math.max(1, parseInt($("f-qty").value, 10) || 1);
+  var ship = document.querySelector('input[name="recv"]:checked').value === "ship";
+  $("addr-field").hidden = !ship;
+  var d = $("f-date").value ? $("f-date").value.split("-").reverse().join("/") : "chưa chọn";
+  var rows = [
+    ["Bánh", c.name],
+    ["Cỡ", sz.text + " × " + qty],
+    ["Chữ", $("f-text").value || "—"],
+    ["Nhận", ($("f-time").value || "") + " ngày " + d],
+    ["Cách nhận", ship ? "Giao tận nhà" : "Lấy tại tiệm"]
+  ];
+  if (ship) rows.push(["Địa chỉ", $("f-addr").value || "—"]);
+  rows.push(["Người đặt", ($("f-name").value || "—") + ($("f-phone").value ? " · " + $("f-phone").value : "")]);
+  if ($("f-note").value) rows.push(["Ghi chú", $("f-note").value]);
+  $("slip-dl").innerHTML = rows.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+  var total = c.prices[sz.idx] * qty;
+  $("slip-total").textContent = fmt(total);
+  $("slip-ship").textContent = ship ? "Phí giao hàng: miễn phí" : "Lấy tại tiệm: Suối Bạc 3, Sơn Hòa";
+  $("msg").value = "ĐẶT BÁNH – Bánh Nhà Phúc\n" + rows.map(function (r) { return "- " + r[0] + ": " + r[1]; }).join("\n") + "\n- Tạm tính: " + fmt(total);
+}
+$("form").addEventListener("input", update);
+$("form").addEventListener("change", update);
+update();
+
+function copyText(text, onDone, fallbackEl) {
+  function fallback() {
+    if (fallbackEl) { fallbackEl.focus(); fallbackEl.select(); }
+    onDone(false);
+  }
+  try {
+    navigator.clipboard.writeText(text).then(function () { onDone(true); }, fallback);
+  } catch (e) { fallback(); }
+}
+$("copy-btn").addEventListener("click", function () {
+  copyText($("msg").value, function (ok) {
+    $("status").textContent = ok ? "Đã chép. Mở Zalo của tiệm và dán vào ô tin nhắn." : "Không chép tự động được. Nội dung đã được chọn sẵn bên dưới, bạn giữ tay để sao chép.";
+  }, $("msg"));
+});
+
+// Số điện thoại
+var phone = SHOP.phone.replace(/\s/g, "");
+if (phone) {
+  $("phone-text").textContent = phone.replace(/(\d{4})(\d{3})(\d+)/, "$1 $2 $3");
+  $("call-link").href = "tel:" + phone;
+}
+var zalo = (SHOP.zalo || SHOP.phone).replace(/\s/g, "");
+if (zalo) $("zalo-btn").href = "https://zalo.me/" + zalo;
+$("copy-phone").addEventListener("click", function () {
+  var b = this;
+  copyText(phone || "09xx xxx xxx", function (ok) { b.textContent = ok ? "Đã chép" : "Chép số"; });
+});
+</script>
+</body>
+</html>
